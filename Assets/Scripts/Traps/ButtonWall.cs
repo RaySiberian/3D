@@ -2,7 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-public class FloreButton : MonoBehaviour
+public class ButtonWall : MonoBehaviour
 {
     [Header("Button")]
     public float animationDelayButton;
@@ -21,17 +21,18 @@ public class FloreButton : MonoBehaviour
     public Vector3 endPosition;
 
     public Transform wallTransform;
-
-    private AudioLevelManager audioLevelManager;
     
-    private void Start()
-    {
-        audioLevelManager = FindObjectOfType<AudioLevelManager>();
-    }
 
+    private SoundManager soundManager;
+
+    private void Awake()
+    {
+        soundManager = FindObjectOfType<SoundManager>();
+    }
+    
     private void StartButtonAnimation()
     {
-        audioLevelManager.Play("Button");
+        soundManager.Play("Button");
         Sequence sequence = DOTween.Sequence();
         sequence.Append(transform.DOLocalMove(endPositionButton, animationTimeButton));
         StartWallAnimation();

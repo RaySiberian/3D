@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -12,13 +13,18 @@ public class CharacterMovement : MonoBehaviour
     private float groundCheckRadius = 0.3f;
     public LayerMask groundMask;
     private bool isGrounded;
-
+    
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
     }
 
     private void Update()
+    {
+        Move();
+    }
+
+    private void Move()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundMask);
 
@@ -40,10 +46,18 @@ public class CharacterMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
     }
-
+    
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
+    }
+
+    public void SetPlayerPosition(Vector3 position,Quaternion rotation)
+    {
+        characterController.enabled = false;
+        transform.position = position;
+        transform.rotation = rotation;
+        characterController.enabled = true;
     }
 
 }
