@@ -48,7 +48,10 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(mainCamera.transform.position,mainCamera.transform.forward,out hit,range))
         {
-            Debug.Log(hit.collider.gameObject.name);
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                Destroy(hit.collider.gameObject);
+            }
         }
     }
 

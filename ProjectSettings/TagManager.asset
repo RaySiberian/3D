@@ -8,6 +8,7 @@ TagManager:
   - Button
   - FallenBlock
   - Damage
+  - Enemy
   layers:
   - Default
   - TransparentFX
