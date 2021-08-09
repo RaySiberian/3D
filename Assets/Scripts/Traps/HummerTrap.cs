@@ -1,29 +1,12 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 
 public class HummerTrap : MonoBehaviour
 {
-    [SerializeField] 
-    private Vector3 startPosition;
-    [SerializeField] 
-    private Vector3 endPosition;
-    [SerializeField] 
-    private float duration;
-    [SerializeField] 
-    private Transform spawnPosition;
-    [SerializeField] 
-    private float delayToStartAnimation;
-    
-    private CharacterMovement characterMovement;
-    
-    private SoundManager soundManager;
-    
-    private void Awake()
-    {
-        soundManager = FindObjectOfType<SoundManager>();
-        characterMovement = FindObjectOfType<CharacterMovement>();
-    }
+    [SerializeField] private Vector3 startPosition;
+    [SerializeField] private Vector3 endPosition;
+    [SerializeField] private float duration;
+    [SerializeField] private float delayToStartAnimation;
 
     private void Start()
     {
@@ -43,8 +26,8 @@ public class HummerTrap : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            soundManager.Play("Death");
-            characterMovement.SetPlayerPosition(spawnPosition.position, spawnPosition.rotation);
+            SoundManager.Instance.Play("Death");
+            other.GetComponent<Player>().GetDamage();
         }
     }
 }

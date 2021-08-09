@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
@@ -13,7 +13,9 @@ public class CharacterMovement : MonoBehaviour
     private float groundCheckRadius = 0.3f;
     public LayerMask groundMask;
     private bool isGrounded;
-    
+
+    public static event Action<ItemObject, int> OnTriggeredItem; 
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -50,6 +52,14 @@ public class CharacterMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Item item))
+        {
+            OnTriggeredItem?.Invoke(item.item,1);
+        }
     }
 
     public void SetPlayerPosition(Vector3 position,Quaternion rotation)

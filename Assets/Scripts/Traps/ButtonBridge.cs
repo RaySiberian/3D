@@ -3,28 +3,18 @@ using UnityEngine;
 
 public class ButtonBridge : MonoBehaviour
 {
-    [Header("Button")] 
-    [SerializeField] 
-    private Vector3 startPosition;
-    [SerializeField] 
-    private Vector3 endPosition;
-    [SerializeField]
-    private float animationDuration;
-    [SerializeField]
-    private float delayToReset;
+    [Header("Button")] [SerializeField] private Vector3 startPosition;
+    [SerializeField] private Vector3 endPosition;
+    [SerializeField] private float animationDuration;
+    [SerializeField] private float delayToReset;
 
-    [Header("BridgeBlocks")] 
-    [SerializeField]
+    [Header("BridgeBlocks")] [SerializeField]
     private GameObject[] bridgeParts;
-    [SerializeField] 
-    private Vector3 moveOffset;
-    [SerializeField] 
-    private float delayToStartPartAnimation;
-    [SerializeField] 
-    private float partAnimationTime;
-    [SerializeField] 
-    private float partDelayToReset;
-    
+    [SerializeField] private Vector3 moveOffset;
+    [SerializeField] private float delayToStartPartAnimation;
+    [SerializeField] private float partAnimationTime;
+    [SerializeField] private float partDelayToReset;
+
     private void StartButtonAnimation()
     {
         Sequence sequence = DOTween.Sequence();

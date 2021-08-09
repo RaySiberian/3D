@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -22,17 +21,9 @@ public class ButtonWall : MonoBehaviour
 
     public Transform wallTransform;
     
-
-    private SoundManager soundManager;
-
-    private void Awake()
-    {
-        soundManager = FindObjectOfType<SoundManager>();
-    }
-    
     private void StartButtonAnimation()
     {
-        soundManager.Play("Button");
+        SoundManager.Instance.Play("Button");
         Sequence sequence = DOTween.Sequence();
         sequence.Append(transform.DOLocalMove(endPositionButton, animationTimeButton));
         StartWallAnimation();

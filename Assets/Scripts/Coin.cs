@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -6,13 +5,6 @@ public class Coin : MonoBehaviour
 {
     [SerializeField] 
     private float rotationSpeed;
-
-    private SoundManager soundManager;
-
-    private void Awake()
-    {
-        soundManager = FindObjectOfType<SoundManager>();
-    }
 
     private void Start()
     {
@@ -30,7 +22,7 @@ public class Coin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            soundManager.Play("Coin");
+            SoundManager.Instance.Play("Coin");
             LevelManager.Instance.AddScore(1);
             gameObject.SetActive(false);
         }
